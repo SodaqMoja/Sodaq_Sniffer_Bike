@@ -656,6 +656,12 @@ bool Sodaq_nbIOT::connect(const char* apn, const char* cdp, const char* forceOpe
         if (readResponse(NULL, COPS_TIMEOUT) != ResponseOK) {
             return false;
         }
+    } else {
+        println("AT+COPS=0");
+
+        if (readResponse(NULL, COPS_TIMEOUT) != ResponseOK) {
+            return false;
+        }
     }
     
     if (!waitForSignalQuality()) {
