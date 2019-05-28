@@ -679,14 +679,14 @@ bool setModemActive(bool on)
     // TODO Fix reset mechanism
     if (on) {
         if (!nbiot.isConnected()) {
-            if (!nbiot.connect(params._apn, params._cdp, params._forceOperator)) {
+            if (!nbiot.connect(params._apn, params._cdp, params._forceOperator, params._band)) {
                 nbiot.off();
                 sodaq_wdt_safe_delay(450);
                 nbiot.on();
                 sodaq_wdt_safe_delay(450);
 
                 // try just one last time
-                return nbiot.connect(params._apn, params._cdp, params._forceOperator);
+                return nbiot.connect(params._apn, params._cdp, params._forceOperator, params._band);
             }
             return true;
         }
